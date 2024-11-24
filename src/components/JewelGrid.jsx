@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles.css";
 
+const BASE_URL = "https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app";
+
 function JewelGrid() {
   const [jewels, setJewels] = useState([]);
   const [metadata, setMetadata] = useState([]);
@@ -12,7 +14,7 @@ function JewelGrid() {
   useEffect(() => {
     const fetchJewels = async () => {
       try {
-        const response = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/images_list");
+        const response = await axios.get(`${BASE_URL}/images_list`);
         const jewelData = response.data.map((jewel) => ({
           ...jewel,
           name: jewel.id.replace(/_/g, " ").replace(".jpg", ""),
@@ -26,7 +28,7 @@ function JewelGrid() {
     // Fetch metadata for jewels
     const fetchMetadata = async () => {
       try {
-        const response = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/jewelry_metadata");
+        const response = await axios.get(`${BASE_URL}/jewelry_metadata`);
         setMetadata(response.data);
       } catch (error) {
         console.error("Error fetching metadata:", error);
@@ -37,13 +39,11 @@ function JewelGrid() {
     fetchMetadata();
   }, []);
 
-  // Function to get jewel metadata by ID and format the price
   const getJewelMetadata = (jewelId) => {
-    const normalizedJewelId = jewelId.replace('.jpg', ''); // Remove ".jpg" extension
+    const normalizedJewelId = jewelId.replace('.jpg', '');
     const jewelMetadata = metadata.find(data => data.id === normalizedJewelId);
 
     if (!jewelMetadata) {
-      console.log(`No metadata found for jewel ${normalizedJewelId}`);
       return { price: '0', isBestseller: false };
     }
 
@@ -60,7 +60,6 @@ function JewelGrid() {
     };
   };
 
-  // Handle click event to navigate to SimilarJewelsPage
   const handleJewelClick = (jewel) => {
     navigate(`/jewel/${jewel.id}`);
   };
@@ -79,7 +78,7 @@ function JewelGrid() {
                 onClick={() => handleJewelClick(jewel)}
               >
                 <img
-                  src={`https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app${jewel.imageUrl}`}
+                  src={`${BASE_URL}${jewel.imageUrl}`}
                   alt={jewel.name}
                   onError={(e) => {
                     console.error(`Failed to load image for: ${jewel.id}`);

@@ -6,19 +6,19 @@ import "../styles.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const BASE_URL = "https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app";
+
 function SimilarJewelsPage() {
   const { jewelId } = useParams();
   const [selectedJewel, setSelectedJewel] = useState(null);
   const [similarJewels, setSimilarJewels] = useState([]);
   const [metadata, setMetadata] = useState([]);
-  const [isMetadataLoaded, setIsMetadataLoaded] = useState(false);
 
   useEffect(() => {
     const fetchMetadata = async () => {
       try {
-        const metadataResponse = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/jewelry_metadata");
+        const metadataResponse = await axios.get(`${BASE_URL}/jewelry_metadata`);
         setMetadata(metadataResponse.data);
-        setIsMetadataLoaded(true);  // Set metadata as loaded after fetching
       } catch (error) {
         console.error("Error fetching metadata:", error);
       }
@@ -28,11 +28,9 @@ function SimilarJewelsPage() {
   }, []);
 
   useEffect(() => {
-    if (!isMetadataLoaded) return; // Wait until metadata is loaded
-
     const fetchJewelData = async () => {
       try {
-        const jewelResponse = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/images_list");
+        const jewelResponse = await axios.get(`${BASE_URL}/images_list`);
         const jewelData = jewelResponse.data.find((jewel) => jewel.id === jewelId);
 
         if (jewelData) {
@@ -41,11 +39,11 @@ function SimilarJewelsPage() {
             ...jewelData,
             name: jewelData.id.replace(/_/g, " ").replace(".jpg", ""),
             price,
-            imageUrl: `/images/${jewelData.id.endsWith('.jpg') ? jewelData.id : jewelData.id + '.jpg'}`
+            imageUrl: `/images/${jewelData.id}`,
           });
         }
 
-        const similarResponse = await axios.get(`https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/similar_jewels/${jewelId}`);
+        const similarResponse = await axios.get(`${BASE_URL}/similar_jewels/${jewelId}`);
         setSimilarJewels(similarResponse.data);
       } catch (error) {
         console.error("Error fetching jewel data:", error);
@@ -53,7 +51,7 @@ function SimilarJewelsPage() {
     };
 
     fetchJewelData();
-  }, [jewelId, isMetadataLoaded]); // Trigger when metadata is loaded
+  }, [jewelId]);
 
   const getJewelMetadata = (jewelId) => {
     const jewelMetadata = metadata.find((meta) => meta.id === jewelId.replace('.jpg', ''));
@@ -70,7 +68,7 @@ function SimilarJewelsPage() {
   };
 
   const renderSimilarJewel = (jewel) => {
-    const imageUrl = `https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/images/${jewel.jewel_id.endsWith('.jpg') ? jewel.jewel_id : jewel.jewel_id + '.jpg'}`;
+    const imageUrl = `${BASE_URL}/images/${jewel.jewel_id}`;
     const { price } = getJewelMetadata(jewel.jewel_id);
     const similarityPercentage = parseFloat(jewel.similarity).toFixed(2); 
 
@@ -101,7 +99,7 @@ function SimilarJewelsPage() {
           <h3>{selectedJewel.name}</h3>
           <img
             className="large-image"
-            src={`https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app${selectedJewel.imageUrl}`}
+            src={`${BASE_URL}${selectedJewel.imageUrl}`}
             alt={selectedJewel.name}
           />
           <div className="price-container">
