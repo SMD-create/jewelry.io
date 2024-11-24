@@ -1,0 +1,197 @@
+/* General layout for the grid */
+.jewel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Jewel Card Styles */
+.jewel-card {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.jewel-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bestseller Tag */
+.bestseller-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+/* Image Styling */
+.jewel-card img,
+.similar-jewel-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Jewel Details */
+.jewel-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.delivery-date {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.action-btn {
+    font-size: 18px;
+    color: #ff6b6b;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.action-btn:hover {
+    color: #e63946;
+}
+
+/* Selected Jewel Card */
+.selected {
+    border: 2px solid #ff6b6b;
+}
+
+.selected-jewel {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.large-image {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.selected-jewel-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.tax-note {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Similar Jewels Slider */
+.similar-jewel-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.similar-jewel-card {
+    flex: 0 0 auto;
+    width: 150px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.similar-jewel-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.similar-jewel-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.similar-jewel-price {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.similarity-percentage {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 3px;
+}
+
+.similar-jewel-card {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .similar-jewel-similarity {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+  
