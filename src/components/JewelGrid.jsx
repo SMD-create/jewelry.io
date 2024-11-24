@@ -12,7 +12,7 @@ function JewelGrid() {
   useEffect(() => {
     const fetchJewels = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/images_list");
+        const response = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/images_list");
         const jewelData = response.data.map((jewel) => ({
           ...jewel,
           name: jewel.id.replace(/_/g, " ").replace(".jpg", ""),
@@ -26,7 +26,7 @@ function JewelGrid() {
     // Fetch metadata for jewels
     const fetchMetadata = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/jewelry_metadata");
+        const response = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/jewelry_metadata");
         setMetadata(response.data);
       } catch (error) {
         console.error("Error fetching metadata:", error);
@@ -79,7 +79,7 @@ function JewelGrid() {
                 onClick={() => handleJewelClick(jewel)}
               >
                 <img
-                  src={`http://localhost:3000${jewel.imageUrl}`}
+                  src={`https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app${jewel.imageUrl}`}
                   alt={jewel.name}
                   onError={(e) => {
                     console.error(`Failed to load image for: ${jewel.id}`);

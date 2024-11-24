@@ -16,7 +16,7 @@ function SimilarJewelsPage() {
   useEffect(() => {
     const fetchMetadata = async () => {
       try {
-        const metadataResponse = await axios.get("http://localhost:3000/jewelry_metadata");
+        const metadataResponse = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/jewelry_metadata");
         setMetadata(metadataResponse.data);
         setIsMetadataLoaded(true);  // Set metadata as loaded after fetching
       } catch (error) {
@@ -32,7 +32,7 @@ function SimilarJewelsPage() {
 
     const fetchJewelData = async () => {
       try {
-        const jewelResponse = await axios.get("http://localhost:3000/images_list");
+        const jewelResponse = await axios.get("https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/images_list");
         const jewelData = jewelResponse.data.find((jewel) => jewel.id === jewelId);
 
         if (jewelData) {
@@ -45,7 +45,7 @@ function SimilarJewelsPage() {
           });
         }
 
-        const similarResponse = await axios.get(`http://localhost:3000/similar_jewels/${jewelId}`);
+        const similarResponse = await axios.get(`https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/similar_jewels/${jewelId}`);
         setSimilarJewels(similarResponse.data);
       } catch (error) {
         console.error("Error fetching jewel data:", error);
@@ -70,7 +70,7 @@ function SimilarJewelsPage() {
   };
 
   const renderSimilarJewel = (jewel) => {
-    const imageUrl = `http://localhost:3000/images/${jewel.jewel_id.endsWith('.jpg') ? jewel.jewel_id : jewel.jewel_id + '.jpg'}`;
+    const imageUrl = `https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app/images/${jewel.jewel_id.endsWith('.jpg') ? jewel.jewel_id : jewel.jewel_id + '.jpg'}`;
     const { price } = getJewelMetadata(jewel.jewel_id);
     const similarityPercentage = parseFloat(jewel.similarity).toFixed(2); 
 
@@ -101,7 +101,7 @@ function SimilarJewelsPage() {
           <h3>{selectedJewel.name}</h3>
           <img
             className="large-image"
-            src={`http://localhost:3000${selectedJewel.imageUrl}`}
+            src={`https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app${selectedJewel.imageUrl}`}
             alt={selectedJewel.name}
           />
           <div className="price-container">
