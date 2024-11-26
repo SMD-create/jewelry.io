@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles.css";
 
-const BASE_URL = "https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app";
+const BASE_URL = "https://jewelry-store-smd-create-smd-creates-projects.vercel.app";
 
 function JewelGrid() {
   const [jewels, setJewels] = useState([]);
