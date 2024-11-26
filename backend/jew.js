@@ -6,14 +6,8 @@ const path = require('path');
 const Papa = require('papaparse');
 
 const app = express();
-const corsOptions = {
-    origin: "https://jewelry-store-nbkchiw43-smd-creates-projects.vercel.app", // Allow requests from your frontend URL
-    methods: "GET,POST,PUT,DELETE", // Allow these HTTP methods
-    allowedHeaders: "Content-Type,Authorization", // Allow these headers
-  };
-  
-  app.use(cors(corsOptions));
-  
+app.use(cors({ origin: "*" }));
+
 
 // Serve images from the all_images folder
 app.use('/images', express.static(path.join(__dirname, '..', 'all_images')));
