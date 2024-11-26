@@ -6,7 +6,7 @@ import "../styles.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BASE_URL = "https://jewelry-store-asr8suah4-smd-creates-projects.vercel.app";
+const BASE_URL = "https://jewelry-store-smd-create-smd-creates-projects.vercel.app";
 
 function SimilarJewelsPage() {
   const { jewelId } = useParams();
